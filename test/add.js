@@ -6,6 +6,8 @@ test('add', function() {
     assert.equal(num(0).add(0), '0');
     assert.equal(num(-0).add(0.0), '0');
 
+    assert.equal(num(0.1).add(0.2), '0.3');
+
     // preserve precision
     assert.equal(num(1.2).add(-1.2), '0.0');
 
