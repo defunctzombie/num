@@ -43,5 +43,31 @@ Besides the **num** function, all of the other methods operate on the objects re
 ### div (value) ###
 > divide our num by {value} and return a new num
 
-### pow (value) ###
-> raise our num by {value} and return a new num
+### neg ###
+> return a new int that is the negative
+
+### abs ###
+> return a new int that is the absolute value
+
+### cmp (value) ###
+> compare our value to {value}
+
+> return 0 if self and value are equal, -1 if self < value, 1 if self > value
+
+### lt (value) ###
+> return true if self < value
+
+### lte (value) ###
+> return true if self <= value
+
+### gt (value) ###
+> return true if self > value
+
+### gte (value) ###
+> return true if self >= value
+
+### eq (value) ###
+> return true if self == value
+
+### ne (value) ###
+> return true if self != value
