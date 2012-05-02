@@ -126,25 +126,19 @@ Num.prototype.neg = function() {
 /// a, b can each be either a Num, String, or Number
 /// will return a new Num with the greatest precision of the operands
 Num.add = function(a, b) {
-    // force a,b to be Num
-    if(!(a instanceof Num))
-        a = Num(a);
-    if(!(b instanceof Num))
-        b = Num(b);
+    a = ensure_num(a);
+    b = ensure_num(b);
 
-    // make sure num and a have the same precision
-    if(a._precision < b._precision) {
-        a = Num(a); // copy before modifying
-        a.set_precision(b._precision);
-    } else if(b._precision < a._precision) {
-        b = Num(b); // copy before modifying
-        b.set_precision(a._precision);
-    }
+    var precision = Math.max(a._precision, b._precision);
+    var a = Num(a);
+    a.set_precision(precision);
+    var b = Num(b);
+    b.set_precision(precision);
 
     // the integer result
     var num_res = a._int.add(b._int);
 
-    return new Num(num_res, a._precision);
+    return new Num(num_res, precision);
 };
 
 /// returns a - b
@@ -158,24 +152,31 @@ Num.sub = function(a, b) {
 
 /// returns a * b
 /// a, b can each be either a Num, String, or Number
-/// will return a new Num with precision = sum(a.precision,b.precision)
+/// will return a new Num with precision = a.precision + b.precision
 Num.mul = function(a, b) {
-    // force a,b to be Num
-    if(!(a instanceof Num))
-        a = Num(a);
-    if(!(b instanceof Num))
-        b = Num(b);
-
+    a = ensure_num(a);
+    b = ensure_num(b);
     return new Num(a._int.mul(b._int), a._precision + b._precision);
+};
+
+Num.div = function(a, b) {
+    a = ensure_num(a);
+    b = ensure_num(b);
+
+    var precision = a._precision - b._precision;
+
+    while (a._int.lt(b._int)) {
+        a._int = a._int.mul(10);
+        precision += 1;
+    }
+
+    return Num(a._int.div(b._int), precision);
 };
 
 /// returns < 0 if a < b, 0 if a == b, > 0 if a > b
 Num.cmp = function(a, b) {
-    // force a,b to be Num
-    if(!(a instanceof Num))
-        a = Num(a);
-    if(!(b instanceof Num))
-        b = Num(b);
+    a = ensure_num(a);
+    b = ensure_num(b);
 
     return a.sub(b).toNumber();
 };
@@ -212,5 +213,14 @@ Num.lte = function(a, b) {
         add_method(i);
     }
 })();
+
+/// box the value into a Num if it isn't
+function ensure_num(val) {
+    if (val instanceof Num) {
+        return val;
+    }
+
+    return Num(val);
+}
 
 module.exports = Num;
