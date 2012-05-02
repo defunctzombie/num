@@ -1,8 +1,8 @@
 var int = require('int');
 
-function Num(num, precision) {
+function Num(num, prec) {
     if (!(this instanceof Num)) {
-        return new Num(num, precision);
+        return new Num(num, prec);
     }
 
     var self = this;
@@ -28,25 +28,42 @@ function Num(num, precision) {
     }
 
     this._int = int(num);
-    this._precision = precision;
+    this._precision = prec || precision;
 }
 
-// TODO: this is probably slow, make faster
+// TODO (shtylman) cleanup
 Num.prototype.toString = function() {
+
     var num_str = this._int.toString();
 
-    var sign = '';
-    if (num_str.charAt(0) === '-') {
-        sign = '-';
-    }
-
-    if (this._precision === 0) {
+    // 0 precision, just return the int
+    if (this._precision <= 0) {
         return num_str;
     }
 
-    var arr = num_str.split('');
-    arr.splice(arr.length - this._precision, 0, '.');
-    return sign + arr.join('');
+    // if number is negative, store that and make it positive
+    var neg = false;
+    if (num_str.charAt(0) === '-') {
+        // negative
+        neg = true;
+        num_str = num_str.slice(1);
+    }
+
+    // find index where to add the decimal point
+    var idx = num_str.length - this._precision;
+
+    // insert the proper number of 0s after the .
+    if(idx < 0) {
+        var zeros = new Array(-idx + 1).join('0');
+        idx = 0;
+    } else {
+        var zeros = '';
+    }
+
+    // make sure there's always a number before the .
+    var before_dot = idx > 0 ? num_str.slice(0, idx) : '0';
+
+    return (neg ? '-' : '') + before_dot + '.' + zeros + num_str.slice(idx);
 };
 
 Num.prototype.valueOf = Num.prototype.toString;
@@ -86,7 +103,7 @@ Num.prototype.round = function(precision) {
     // the index to check for rounding
     var idx = num_str.length - copy._precision + precision;
 
-    // the number to check if >= 5
+    // the number to check for rounding
     var n = num_str[idx] - 0;
 
     var neg = num_str[0] === '-';
@@ -105,21 +122,6 @@ Num.prototype.neg = function() {
     return new Num(this._int.neg(), this._precision);
 };
 
-Num.prototype.to_int = function(precision) {
-    var copy = this.copy();
-    copy.set_precision(precision);
-    return copy._int;
-};
-
-/// converts a Num to an integer representation with specified precision
-/// Num('32.1').to_int(5) will be converted to 3210000
-/// for doing fast calculations before converting back with Num.from_int
-/// warning! cannot convert more than ~16 total Num digits of precision
-Num.prototype.to_int = function(precision) {
-    var dec_str = this.round(precision).toString();
-    return Math.round(dec_str * Math.pow(10, precision));
-};
-
 /// returns a + b
 /// a, b can each be either a Num, String, or Number
 /// will return a new Num with the greatest precision of the operands
@@ -132,10 +134,10 @@ Num.add = function(a, b) {
 
     // make sure num and a have the same precision
     if(a._precision < b._precision) {
-        a = a.copy(); // copy before modifying
+        a = Num(a); // copy before modifying
         a.set_precision(b._precision);
     } else if(b._precision < a._precision) {
-        b = b.copy(); // copy before modifying
+        b = Num(b); // copy before modifying
         b.set_precision(a._precision);
     }
 
