@@ -4,7 +4,7 @@
 
 **num** is an arbitrary size fixed precision library written in pure javascript. Why? Because once you write one library you want to write all the libraries.
 
-Looking for just integers? Check out **int** at shtylman/node-int
+Looking for just integers? Check out [int](https://github.com/shtylman/node-int)
 
 ## quick and dirty ##
 
