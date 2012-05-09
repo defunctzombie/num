@@ -175,10 +175,21 @@ Num.div = function(a, b) {
 
 /// returns < 0 if a < b, 0 if a == b, > 0 if a > b
 Num.cmp = function(a, b) {
-    a = ensure_num(a);
-    b = ensure_num(b);
 
-    return a.sub(b).toNumber();
+    // make copies cause we modify precision
+    var a = Num(a);
+    var b = Num(b);
+
+    if (a._int._s != b._int._s) {
+        return a._int._s ? -1 : 1;
+    }
+
+    // normalize the two numbers
+    var precision = Math.max(a._precision, b._precision);
+    a.set_precision(precision);
+    b.set_precision(precision);
+
+    return a._int.cmp(b._int);
 };
 
 Num.eq = function(a, b) {
