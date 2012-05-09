@@ -2,14 +2,20 @@
   "author": "Roman Shtylman <shtylman@gmail.com>",
   "name": "num",
   "description": "arbitrary precision integer and decimal library in pure javascript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/shtylman/node-num.git"
   },
+  "keywords": [
+    "decimal",
+    "num",
+    "arithmatic",
+    "precision"
+  ],
   "main": "num.js",
   "dependencies": {
-    "int": "0.0.3"
+    "int": "0.1.0"
   },
   "devDependencies": {
     "mocha": ">=1.x.x"
