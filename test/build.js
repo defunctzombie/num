@@ -35,3 +35,9 @@ test('build', function() {
     assert.equal(num('-.000098765432198765432112345678901'), '-0.000098765432198765432112345678901');
 });
 
+test('build#precision', function() {
+    assert.equal(num(15, 1), '1.5');
+    assert.equal(num(1234567890, 5), '12345.67890');
+    assert.equal(num(-122, 4), '-0.0122');
+});
+
