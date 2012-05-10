@@ -173,6 +173,28 @@ Num.div = function(a, b) {
     return Num(a._int.div(b._int), precision);
 };
 
+Num.mod = function(a, b) {
+    a = ensure_num(a);
+    b = ensure_num(b);
+
+    var prec_a = a._precision;
+    var prec_b = b._precision;
+    var a = a._int;
+    var b = b._int;
+
+    while (prec_a < prec_b) {
+        a = a.mul(10);
+        prec_a += 1;
+    }
+
+    while (prec_b < prec_a) {
+        b = b.mul(10);
+        prec_b += 1;
+    }
+
+    return Num(a.mod(b), prec_a);
+};
+
 /// returns < 0 if a < b, 0 if a == b, > 0 if a > b
 Num.cmp = function(a, b) {
 
