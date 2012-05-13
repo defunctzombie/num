@@ -2,7 +2,7 @@
   "author": "Roman Shtylman <shtylman@gmail.com>",
   "name": "num",
   "description": "arbitrary precision integer and decimal library in pure javascript",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/shtylman/node-num.git"
@@ -26,5 +26,9 @@
   },
   "scripts": {
     "test": "mocha"
-  }
+  },
+  "contributors": [
+    "Roman Shtylman <shtylman@gmail.com>",
+    "Vadim Graboys <dimva13@gmail.com>"
+  ]
 }
