@@ -67,6 +67,7 @@ Num.prototype.toString = function() {
 };
 
 Num.prototype.valueOf = Num.prototype.toString;
+Num.prototype.toJSON = Num.prototype.toString;
 
 /// return {int} the precision
 Num.prototype.get_precision = function() {
