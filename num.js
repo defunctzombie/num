@@ -164,14 +164,14 @@ Num.div = function(a, b) {
     a = ensure_num(a);
     b = ensure_num(b);
 
-    var precision = a._precision - b._precision;
+    var a_int = a._int;
 
-    while (a._int.lt(b._int)) {
-        a._int = a._int.mul(10);
-        precision += 1;
+    var precision = b._precision;
+    for (var i=0 ; i<precision ; ++i) {
+        a_int = a_int.mul(10);
     }
 
-    return Num(a._int.div(b._int), precision);
+    return Num(a_int.div(b._int), a._precision);
 };
 
 Num.mod = function(a, b) {
