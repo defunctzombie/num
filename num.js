@@ -123,6 +123,11 @@ Num.prototype.neg = function() {
     return new Num(this._int.neg(), this._precision);
 };
 
+/// returns new Num, absolute value of this
+Num.prototype.abs = function() {
+    return new Num(this._int.abs(), this._precision);
+};
+
 /// returns a + b
 /// a, b can each be either a Num, String, or Number
 /// will return a new Num with the greatest precision of the operands

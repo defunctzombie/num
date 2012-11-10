@@ -15,7 +15,7 @@ npm install num
 ```javascript
 var num = require('num');
 
-var foo = int('0.1').add('0.2');
+var foo = num('0.1').add('0.2');
 
 // did it work?
 console.log(foo.toString());
@@ -24,7 +24,7 @@ console.log(foo.toString());
 
 ## api ##
 
-Besides the **num** function, all of the other methods operate on the objects returned by **int**
+Besides the **num** function, all of the other methods operate on the objects returned by **num**
 
 ### num (value) ###
 > construct a new decimal
@@ -44,10 +44,13 @@ Besides the **num** function, all of the other methods operate on the objects re
 > divide our num by {value} and return a new num
 
 ### neg ###
-> return a new int that is the negative
+> return a new num that is the negative
 
 ### abs ###
-> return a new int that is the absolute value
+> return new num that is the absolute value
+
+### abs ###
+> return a new num that is the absolute value
 
 ### cmp (value) ###
 > compare our value to {value}
