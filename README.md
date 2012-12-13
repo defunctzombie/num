@@ -74,3 +74,7 @@ Besides the **num** function, all of the other methods operate on the objects re
 
 ### ne (value) ###
 > return true if self != value
+
+## browser support
+
+[![browser support](http://ci.testling.com/shtylman/node-num.png)](http://ci.testling.com/shtylman/node-num)

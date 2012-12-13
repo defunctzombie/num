@@ -30,5 +30,13 @@
   "contributors": [
     "Roman Shtylman <shtylman@gmail.com>",
     "Vadim Graboys <dimva13@gmail.com>"
-  ]
+  ],
+  "testling": {
+    "browsers": [
+      "ie8", "ie9",
+      "firefox/15", "chrome/22", "safari/5.1"
+    ],
+    "harness" : "mocha-tdd",
+    "files": "test/*.js"
+  }
 }
