@@ -15,7 +15,7 @@
   ],
   "main": "num.js",
   "dependencies": {
-    "int": "0.1.0"
+    "int": "0.1.1"
   },
   "devDependencies": {
     "mocha": ">=1.x.x"

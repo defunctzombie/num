@@ -12,3 +12,17 @@ test('sub', function() {
     assert.equal(num(100.012).sub(num('987654321987654321.12345678901')), '-987654321987654221.11145678901');
 });
 
+test('sub#constness', function() {
+    var one = num(1.2);
+    var two = num(-1.2);
+    assert.equal(one, '1.2');
+    assert.equal(two, '-1.2');
+
+    one.sub(two);
+    assert.equal(one, '1.2');
+    assert.equal(two, '-1.2');
+
+    two.sub(one);
+    assert.equal(one, '1.2');
+    assert.equal(two, '-1.2');
+});
