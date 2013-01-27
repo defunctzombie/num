@@ -33,8 +33,10 @@
   ],
   "testling": {
     "browsers": [
-      "ie8", "ie9",
-      "firefox/15", "chrome/22", "safari/5.1"
+      "ie8..latest",
+      "firefox/15..latest",
+      "chrome/22..latest",
+      "safari/5.1..latest"
     ],
     "harness" : "mocha-tdd",
     "files": "test/*.js"
