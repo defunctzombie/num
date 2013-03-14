@@ -15,20 +15,42 @@ function Num(num, prec) {
     // convert to a string
     num = '' + num;
 
+    var currentPrecision = 0;
+
     // find Num point
     var dec = num.indexOf('.');
+    num = num.replace('.', '');
 
-    if (dec >= 0) {
-        // take out the Num point
-        num = num.replace('.', '');
-        var precision = num.length - dec;
+    if (dec >= 0)
+    {
+        currentPrecision = num.length - dec;
     }
-    else {
-        var precision = 0;
+
+    if (isNaN(prec))
+    {
+        this._precision = currentPrecision;
+    }
+    else
+    {
+        // Pad with zero as needed
+        if (prec > currentPrecision)
+        {
+            var zeroWidth = prec - currentPrecision + 1;
+            if (zeroWidth > 1)
+            {
+                num = num + new Array(zeroWidth).join('0');
+            }
+        }
+        else
+        {
+            // Trim
+            num = num.substr(0, num.length - (currentPrecision - prec));
+        }
+
+        this._precision = prec;
     }
 
     this._int = int(num);
-    this._precision = prec || precision;
 }
 
 // TODO (shtylman) cleanup
