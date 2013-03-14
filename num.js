@@ -1,8 +1,8 @@
 var int = require('int');
 
-function Num(num, prec) {
+function Num(num, prec, isNumInt) {
     if (!(this instanceof Num)) {
-        return new Num(num, prec);
+        return new Num(num, prec, isNumInt);
     }
 
     var self = this;
@@ -15,20 +15,45 @@ function Num(num, prec) {
     // convert to a string
     num = '' + num;
 
+    var currentPrecision = 0;
+
     // find Num point
     var dec = num.indexOf('.');
+    num = num.replace('.', '');
 
-    if (dec >= 0) {
-        // take out the Num point
-        num = num.replace('.', '');
-        var precision = num.length - dec;
+    if (dec >= 0)
+    {
+        currentPrecision = num.length - dec;
     }
-    else {
-        var precision = 0;
+
+    if (isNaN(prec))
+    {
+        this._precision = currentPrecision;
+    }
+    else
+    {
+        // Pad with zero as needed if it's not an internal int
+        if (isNumInt !== true)
+        {
+            if (prec > currentPrecision)
+            {
+                var zeroWidth = prec - currentPrecision + 1;
+                if (zeroWidth > 1)
+                {
+                    num = num + new Array(zeroWidth).join('0');
+                }
+            }
+            else
+            {
+                // Trim
+                num = num.substr(0, num.length - (currentPrecision - prec));
+            }
+        }
+
+        this._precision = prec;
     }
 
     this._int = int(num);
-    this._precision = prec || precision;
 }
 
 // TODO (shtylman) cleanup
@@ -120,12 +145,12 @@ Num.prototype.round = function(precision) {
 
 /// returns new Num, -this
 Num.prototype.neg = function() {
-    return new Num(this._int.neg(), this._precision);
+    return new Num(this._int.neg(), this._precision, true);
 };
 
 /// returns new Num, absolute value of this
 Num.prototype.abs = function() {
-    return new Num(this._int.abs(), this._precision);
+    return new Num(this._int.abs(), this._precision, true);
 };
 
 /// returns a + b
@@ -144,7 +169,7 @@ Num.add = function(a, b) {
     // the integer result
     var num_res = a._int.add(b._int);
 
-    return new Num(num_res, precision);
+    return new Num(num_res, precision, true);
 };
 
 /// returns a - b
@@ -162,7 +187,7 @@ Num.sub = function(a, b) {
 Num.mul = function(a, b) {
     a = ensure_num(a);
     b = ensure_num(b);
-    return new Num(a._int.mul(b._int), a._precision + b._precision);
+    return new Num(a._int.mul(b._int), a._precision + b._precision, true);
 };
 
 Num.div = function(a, b) {
@@ -176,7 +201,7 @@ Num.div = function(a, b) {
         a_int = a_int.mul(10);
     }
 
-    return Num(a_int.div(b._int), a._precision);
+    return Num(a_int.div(b._int), a._precision, true);
 };
 
 Num.mod = function(a, b) {
@@ -198,7 +223,7 @@ Num.mod = function(a, b) {
         prec_b += 1;
     }
 
-    return Num(a.mod(b), prec_a);
+    return Num(a.mod(b), prec_a, true);
 };
 
 /// returns < 0 if a < b, 0 if a == b, > 0 if a > b
