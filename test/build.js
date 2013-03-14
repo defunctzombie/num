@@ -1,4 +1,3 @@
-
 var assert = require('assert');
 var num = require('../');
 
@@ -36,8 +35,8 @@ test('build', function() {
 });
 
 test('build#precision', function() {
-    assert.equal(num(15, 1), '1.5');
-    assert.equal(num(1234567890, 5), '12345.67890');
-    assert.equal(num(-122, 4), '-0.0122');
+    assert.equal(num(15, 1, true), '1.5');
+    assert.equal(num(1234567890, 5, true), '12345.67890');
+    assert.equal(num(-122, 4, true), '-0.0122');
 });
 
