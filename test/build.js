@@ -36,8 +36,8 @@ test('build', function() {
 });
 
 test('build#precision', function() {
-    assert.equal(num(15, 1), '1.5');
-    assert.equal(num(1234567890, 5), '12345.67890');
-    assert.equal(num(-122, 4), '-0.0122');
+    assert.equal(num(15, 1), '15.0');
+    assert.equal(num(1234567890, 5).div(10e4), '12345.67890');
+    assert.equal(num(-122, 4).div(10e3), '-0.0122');
 });
 

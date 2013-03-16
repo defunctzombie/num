@@ -12,6 +12,12 @@ function Num(num, prec) {
         return self;
     }
 
+    if (num instanceof int) {
+        this._int = num;
+        this._precision = prec || 0;
+        return self;
+    }
+
     // convert to a string
     num = '' + num;
 
@@ -28,7 +34,11 @@ function Num(num, prec) {
     }
 
     this._int = int(num);
-    this._precision = prec || precision;
+    this._precision = precision;
+
+    if (prec && prec > 0) {
+        this.set_precision(prec);
+    }
 }
 
 // TODO (shtylman) cleanup
