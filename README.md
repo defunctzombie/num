@@ -77,4 +77,4 @@ Besides the **num** function, all of the other methods operate on the objects re
 
 ## browser support
 
-[![browser support](http://ci.testling.com/shtylman/node-num.png)](http://ci.testling.com/shtylman/node-num)
+[![browser support](https://ci.testling.com/shtylman/node-num.png)](https://ci.testling.com/shtylman/node-num)
