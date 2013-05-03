@@ -43,6 +43,12 @@ Besides the **num** function, all of the other methods operate on the objects re
 ### div (value) ###
 > divide our num by {value} and return a new num
 
+```
+// note that `div` uses the precision of the numerator
+num('1').div('3.0') -> 0
+num('1.0').div('3') -> 0.3
+```
+
 ### neg ###
 > return a new num that is the negative
 
