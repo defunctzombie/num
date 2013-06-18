@@ -1,4 +1,4 @@
-var int = require('int');
+var Int = require('int');
 
 function Num(num, prec) {
     if (!(this instanceof Num)) {
@@ -7,7 +7,7 @@ function Num(num, prec) {
 
     var self = this;
     if (num instanceof Num) {
-        self._int = int(num._int);
+        self._int = Int(num._int);
         self._precision = num._precision;
         return self;
     }
@@ -17,23 +17,23 @@ function Num(num, prec) {
 
     // find Num point
     var dec = num.indexOf('.');
+    var precision;
 
     if (dec >= 0) {
         // take out the Num point
         num = num.replace('.', '');
-        var precision = num.length - dec;
+        precision = num.length - dec;
     }
     else {
-        var precision = 0;
+        precision = 0;
     }
 
-    this._int = int(num);
+    this._int = Int(num);
     this._precision = prec || precision;
 }
 
 // TODO (shtylman) cleanup
 Num.prototype.toString = function() {
-
     var num_str = this._int.toString();
 
     // 0 precision, just return the int
@@ -51,13 +51,14 @@ Num.prototype.toString = function() {
 
     // find index where to add the decimal point
     var idx = num_str.length - this._precision;
+    var zeros;
 
     // insert the proper number of 0s after the .
     if(idx < 0) {
-        var zeros = new Array(-idx + 1).join('0');
+        zeros = new Array(-idx + 1).join('0');
         idx = 0;
     } else {
-        var zeros = '';
+        zeros = '';
     }
 
     // make sure there's always a number before the .
@@ -81,10 +82,10 @@ Num.prototype.set_precision = function(precision) {
     var precision_diff = precision - self._precision;
 
     if (precision_diff > 0) {
-        self._int = self._int.mul(int(10).pow(precision_diff));
+        self._int = self._int.mul(Int(10).pow(precision_diff));
     }
     else if(precision_diff < 0) {
-        self._int = self._int.div(int(10).pow(-precision_diff));
+        self._int = self._int.div(Int(10).pow(-precision_diff));
     }
 
     self._precision += precision_diff;
@@ -136,9 +137,9 @@ Num.add = function(a, b) {
     b = ensure_num(b);
 
     var precision = Math.max(a._precision, b._precision);
-    var a = Num(a);
+    a = Num(a);
     a.set_precision(precision);
-    var b = Num(b);
+    b = Num(b);
     b.set_precision(precision);
 
     // the integer result
@@ -185,8 +186,8 @@ Num.mod = function(a, b) {
 
     var prec_a = a._precision;
     var prec_b = b._precision;
-    var a = a._int;
-    var b = b._int;
+    a = a._int;
+    b = b._int;
 
     while (prec_a < prec_b) {
         a = a.mul(10);
@@ -205,8 +206,8 @@ Num.mod = function(a, b) {
 Num.cmp = function(a, b) {
 
     // make copies cause we modify precision
-    var a = Num(a);
-    var b = Num(b);
+    a = Num(a);
+    b = Num(b);
 
     if (a._int._s != b._int._s) {
         return a._int._s ? -1 : 1;
