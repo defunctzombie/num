@@ -1,10 +1,10 @@
-[![Build Status](https://secure.travis-ci.org/shtylman/node-num.png)](http://travis-ci.org/shtylman/node-num)
+[![Build Status](https://secure.travis-ci.org/defunctzombie/node-num.png)](http://travis-ci.org/defunctzombie/node-num)
 
 ### Unleash all the numbers!! ###
 
 **num** is an arbitrary size fixed precision library written in pure javascript. Why? Because once you write one library you want to write all the libraries.
 
-Looking for just integers? Check out [int](https://github.com/shtylman/node-int)
+Looking for just integers? Check out [int](https://github.com/defunctzombie/node-int)
 
 ## quick and dirty ##
 
@@ -83,4 +83,4 @@ num('1.0').div('3') -> 0.3
 
 ## browser support
 
-[![browser support](http://ci.testling.com/shtylman/node-num.png)](http://ci.testling.com/shtylman/node-num)
+[![browser support](http://ci.testling.com/defunctzombie/node-num.png)](http://ci.testling.com/defunctzombie/node-num)
