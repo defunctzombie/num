@@ -76,3 +76,9 @@ num('1.0').div('3') -> 0.3
 
 ### ne (value) ###
 > return true if self != value
+
+### set_precision (precision) ###
+
+> set the precision for the number. Can be used to alter how many places after the decimal are relevant.
+
+> return self
