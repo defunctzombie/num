@@ -2,7 +2,7 @@
 
 **num** is an arbitrary size fixed precision library written in javascript for node.js and browsers
 
-Looking for just integers? Check out [int](https://github.com/defunctzombie/node-int)
+Looking for just integers? Check out [int](https://github.com/defunctzombie/int)
 
 ```
 npm install num
