@@ -1,12 +1,8 @@
-[![Build Status](https://secure.travis-ci.org/defunctzombie/node-num.png)](http://travis-ci.org/defunctzombie/node-num)
+[![Build Status](https://secure.travis-ci.org/defunctzombie/num.svg)](http://travis-ci.org/defunctzombie/num)
 
-### Unleash all the numbers!! ###
-
-**num** is an arbitrary size fixed precision library written in pure javascript. Why? Because once you write one library you want to write all the libraries.
+**num** is an arbitrary size fixed precision library written in javascript for node.js and browsers
 
 Looking for just integers? Check out [int](https://github.com/defunctzombie/node-int)
-
-## quick and dirty ##
 
 ```
 npm install num
@@ -15,11 +11,11 @@ npm install num
 ```javascript
 var num = require('num');
 
-var foo = num('0.1').add('0.2');
+// ordinary js floating point math
+console.log(0.1 + 0.2); // 0.30000000000000004 :(
 
-// did it work?
-console.log(foo.toString());
-//'0.3' hell yea
+// with `num`
+console.log(num(0.1).add(0.2).toString()); //'0.3'
 ```
 
 ## api ##
@@ -80,7 +76,3 @@ num('1.0').div('3') -> 0.3
 
 ### ne (value) ###
 > return true if self != value
-
-## browser support
-
-[![browser support](http://ci.testling.com/defunctzombie/node-num.png)](http://ci.testling.com/defunctzombie/node-num)

@@ -1,15 +1,16 @@
 {
   "author": "Roman Shtylman <shtylman@gmail.com>",
   "name": "num",
-  "description": "arbitrary precision integer and decimal library in pure javascript",
+  "description": "arbitrary precision integer and decimal library in javascript",
   "version": "0.2.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/shtylman/node-num.git"
+    "url": "git://github.com/defunctzombie/num.git"
   },
   "keywords": [
     "decimal",
     "num",
+    "number",
     "arithmatic",
     "precision"
   ],
@@ -18,27 +19,15 @@
     "int": "0.1.1"
   },
   "devDependencies": {
-    "mocha": ">=1.x.x"
-  },
-  "optionalDependencies": {},
-  "engines": {
-    "node": "*"
+    "zuul": "~1.7.0",
+    "mocha": "~1.8.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha && zuul -- test/*.js",
+    "test-local": "zuul --local -- test/*.js"
   },
   "contributors": [
     "Roman Shtylman <shtylman@gmail.com>",
     "Vadim Graboys <dimva13@gmail.com>"
-  ],
-  "testling": {
-    "browsers": [
-      "ie8..latest",
-      "firefox/15..latest",
-      "chrome/22..latest",
-      "safari/5.1..latest"
-    ],
-    "harness": "mocha-tdd",
-    "files": "test/*.js"
-  }
+  ]
 }
