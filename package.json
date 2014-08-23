@@ -19,11 +19,12 @@
     "int": "0.1.2"
   },
   "devDependencies": {
-    "zuul": "~1.7.0",
-    "mocha": "~1.8.0"
+    "zuul": "~1.10.1",
+    "mocha": "~1.21.4"
   },
   "scripts": {
     "test": "mocha && zuul -- test/*.js",
+    "test-node": "mocha",
     "test-local": "zuul --local -- test/*.js"
   },
   "contributors": [
