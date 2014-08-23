@@ -1,4 +1,4 @@
-# UNRELEASED
+# 0.2.3 (2014-08-23)
 
   * fix parsing scientific notation numbers
 
