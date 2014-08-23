@@ -35,6 +35,12 @@ test('build', function() {
     assert.equal(num('-.000098765432198765432112345678901'), '-0.000098765432198765432112345678901');
 });
 
+test('build with scientific notation', function() {
+    assert.equal(num(2.2e-7), '0.00000022')
+    assert.equal(num(2.2e7), '22000000')
+    assert.equal(num(0.0e10), '0')
+});
+
 test('build#precision', function() {
     assert.equal(num(15, 1), '1.5');
     assert.equal(num(1234567890, 5), '12345.67890');

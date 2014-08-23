@@ -12,8 +12,17 @@ function Num(num, prec) {
         return self;
     }
 
+    var precision = 0;
+
     // convert to a string
     num = '' + num;
+
+    var idx_e = num.indexOf('e');
+    if (idx_e > 0) {
+        var exp = num.slice(idx_e + 1)
+        num = num.slice(0, idx_e)
+        precision = -exp;
+    }
 
     // find Num point
     var dec = num.indexOf('.');
@@ -21,10 +30,7 @@ function Num(num, prec) {
     if (dec >= 0) {
         // take out the Num point
         num = num.replace('.', '');
-        var precision = num.length - dec;
-    }
-    else {
-        var precision = 0;
+        precision = precision + num.length - dec;
     }
 
     this._int = int(num);
