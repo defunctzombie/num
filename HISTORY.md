@@ -1,4 +1,4 @@
-# UNRELEASED
+# 0.3.0 (2014-11-25)
 
   * return NaN when not a number
 

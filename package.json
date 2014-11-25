@@ -2,7 +2,7 @@
   "author": "Roman Shtylman <shtylman@gmail.com>",
   "name": "num",
   "description": "arbitrary precision integer and decimal library in javascript",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/defunctzombie/num.git"
