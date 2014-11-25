@@ -16,7 +16,7 @@
   ],
   "main": "num.js",
   "dependencies": {
-    "int": "0.1.2"
+    "int": "0.2.0"
   },
   "devDependencies": {
     "zuul": "~1.10.1",

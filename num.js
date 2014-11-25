@@ -14,6 +14,7 @@ function Num(num, prec) {
 
     var precision = 0;
 
+    num = num || 0;
     // convert to a string
     num = '' + num;
 
@@ -33,17 +34,23 @@ function Num(num, prec) {
         precision = precision + num.length - dec;
     }
 
-    this._int = int(num);
-    this._precision = prec || precision;
+    self._int = int(num);
+    self._precision = prec || precision;
+    self._nan = self._int._nan;
 }
 
 // TODO (shtylman) cleanup
 Num.prototype.toString = function() {
+    var self = this;
 
-    var num_str = this._int.toString();
+    if (self._nan) {
+        return NaN;
+    }
+
+    var num_str = self._int.toString();
 
     // 0 precision, just return the int
-    if (this._precision <= 0) {
+    if (self._precision <= 0) {
         return num_str;
     }
 
@@ -56,7 +63,7 @@ Num.prototype.toString = function() {
     }
 
     // find index where to add the decimal point
-    var idx = num_str.length - this._precision;
+    var idx = num_str.length - self._precision;
 
     // insert the proper number of 0s after the .
     if(idx < 0) {
