@@ -19,7 +19,7 @@
     "int": "0.2.0"
   },
   "devDependencies": {
-    "zuul": "~1.10.1",
+    "zuul": "~1.16.2",
     "mocha": "~1.21.4"
   },
   "scripts": {
