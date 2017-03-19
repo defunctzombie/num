@@ -24,3 +24,14 @@ test('gt', function() {
     assert.ok(num(0.001).gt(0.00001));
 });
 
+test('eq', function() {
+    assert.equal(num(1.1).eq(1.1), true);
+    assert.equal(num(0).eq(0), true);
+    assert.equal(num(-5).eq(-5), true);
+    assert.equal(num(-5).eq(5), false);
+});
+
+test('ne', function() {
+    assert.equal(num(-5).ne(5), true);
+    assert.equal(num(1.1).ne(1.1), false);
+});

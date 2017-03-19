@@ -237,6 +237,10 @@ Num.eq = function(a, b) {
     return Num.cmp(a, b) === 0;
 };
 
+Num.ne = function(a, b) {
+    return Num.cmp(a, b) !== 0;
+};
+
 Num.gt = function(a, b) {
     return Num.cmp(a, b) > 0;
 };

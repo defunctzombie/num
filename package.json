@@ -19,13 +19,10 @@
     "int": "0.2.0"
   },
   "devDependencies": {
-    "zuul": "~1.16.2",
     "mocha": "~1.21.4"
   },
   "scripts": {
-    "test": "mocha && zuul -- test/*.js",
-    "test-node": "mocha",
-    "test-local": "zuul --local -- test/*.js"
+    "test": "mocha"
   },
   "contributors": [
     "Roman Shtylman <shtylman@gmail.com>",
