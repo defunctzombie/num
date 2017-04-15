@@ -79,7 +79,12 @@ Num.prototype.toString = function() {
     return (neg ? '-' : '') + before_dot + '.' + zeros + num_str.slice(idx);
 };
 
-Num.prototype.valueOf = Num.prototype.toString;
+/// return an approximate primitive value so that numeric operations
+/// are not treated as string operations
+Num.prototype.valueOf = function() {
+    return parseFloat(this.toString());
+}
+
 Num.prototype.toJSON = Num.prototype.toString;
 
 /// return {int} the precision
